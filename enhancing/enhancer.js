@@ -13,7 +13,8 @@ function succeed(item) {
 }
 
 function fail(item) {
-  return { ...item };
+  const failure = {...item}
+  return { ...item , durability: item.durability -= 5};
 }
 
 function repair(item) {
