@@ -3,13 +3,26 @@ const { succeed, fail, repair, get } = require('./enhancer.js');
 const item = {
     name: 'Mjolnir',
     durability: 80,
-    enhancement: 20
+    enhancement: 18
 }
 describe('enhancer.js', () => {
 
-    // describe('succeed()', () => {
-    //     it.todo('')
-    // })
+    describe('succeed()', () => {
+        it('should increment enhancement by one', () => {
+            const onSuccess = succeed(item);
+            console.log(onSuccess)
+            expect(onSuccess.enhancement).toEqual(19) // dependent on item above, changing will break the test
+        })
+        it('should not change when exceeding an enhancement level of 20', () => {
+            for(let i = 0; i < 21; i++){
+                succeed(item);
+            };
+            expect(item.enhancement).toBeLessThanOrEqual(20)
+
+        })
+        it.todo('should not change the durability of the item')
+        // This is impossible to do with the current code, so I'm skipping until told otherwise
+    })
 
     // describe('fail()', () => {
         

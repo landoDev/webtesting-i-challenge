@@ -6,7 +6,10 @@ module.exports = {
 };
 
 function succeed(item) {
-  return { ...item };
+  // return { ...item, enhancement: item.enhancement += 1 };
+  const success = {...item}
+  // console.log('in fn', success.enhancement)
+  return success.enhancement < 20 ? { ...item, enhancement: item.enhancement += 1 } :  {...item};
 }
 
 function fail(item) {
