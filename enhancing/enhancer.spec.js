@@ -13,7 +13,7 @@ describe('enhancer.js', () => {
         it('should increment enhancement by one', () => {
             let { enhancement } = item
             let onSuccess = succeed(item);
-            expect(onSuccess.enhancement).toBe(enhancement += 1) // dependent on item above, changing will break the test
+            expect(onSuccess.enhancement).toBe(enhancement += 1) 
         })
         it('should not change when exceeding an enhancement level of 20', () => {
             for(let i = 0; i < 21; i++){
@@ -35,7 +35,6 @@ describe('enhancer.js', () => {
             let { durability } = item
             item.enhancement = 14; // if time add a range between fn to throw a random acceptable number here 
             let onFail = fail(item);
-            console.log('in fail', onFail.enhancement)
             expect(onFail.enhancement).toBeLessThan(15)
             expect(onFail.durability).toBe(durability -= 5)
         });
@@ -46,7 +45,12 @@ describe('enhancer.js', () => {
             expect(onFail.enhancement).toBeGreaterThanOrEqual(15)
             expect(onFail.durability).toBe(durability -= 10)
         });
-        it.todo('should decrease enhancement level by one if the enhancement level is greater than 16');
+        it('should decrease enhancement level by one if the enhancement level is greater than 16', () => {
+            item.enhancement = 20
+            let expected = item.enhancement - 1;
+            let onFail = fail(item);
+            expect(onFail.enhancement).toBe(expected)
+        });
     })
 
     describe('repair()', () => {
